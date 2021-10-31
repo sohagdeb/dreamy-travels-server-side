@@ -42,6 +42,12 @@ async function run() {
             res.json(service);
 
         })
+        app.delete('/services/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await serviceCollections.deleteOne(query);
+            res.json(result);
+        })
 
         app.post('/services', async (req, res) => {
             const service = req.body;
